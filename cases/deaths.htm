@@ -50,7 +50,7 @@
       const us = await d3.json("./datasets/us.json");
       var states = topojson.feature(us, us.objects.states);
       var statesMesh = topojson.mesh(us, us.objects.states);
-      var projection = d3.geoAlbersUsa().fitSize([mapWidth, mapHeight], states);
+      var projection = d3.geoAlbersUsa().fitSize([mapWidth1, mapHeight1], states);
       var path = d3.geoPath().projection(projection);
 
       map1.selectAll("path.state").data(states.features)
