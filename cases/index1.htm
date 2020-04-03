@@ -328,11 +328,11 @@
     let state_id = toolTip.append("text").attr("fill", "white").attr("text-anchor","middle").attr("alignment-baseline","hanging").attr("x", ttWidth / 2.0).attr("y", 2);
     let state_count = toolTip.append("text").attr("fill", "white").attr("text-anchor","middle").attr("alignment-baseline","hanging").attr("x", ttWidth / 2.0).attr("y", 22);
 
-    d3.selectAll(".state").on("mouseenter", mouseEntersPlot);
-    d3.selectAll(".state").on("mouseout",  mouseLeavesPlot);
+    d3.selectAll(".state").on("mouseenter", mouseEntersPlot1);
+    d3.selectAll(".state").on("mouseout",  mouseLeavesPlot1);
 
     //function rewritten from INFO3300 at Cornell University
-    function mouseEntersPlot() {
+    function mouseEntersPlot1() {
       toolTip.style("visibility","visible")
       let state = d3.select(this);
       state.attr("stroke","white")
@@ -346,7 +346,7 @@
     }
 
     //function rewritten from INFO3300 at Cornell University
-    function mouseLeavesPlot() {
+    function mouseLeavesPlot1() {
       toolTip.style("visibility","hidden");
       let state = d3.select(this);
       state.attr("stroke","none").attr("stroke-width", 0);
