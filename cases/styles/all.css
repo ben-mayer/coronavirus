@@ -1,0 +1,118 @@
+html{
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+.outline {
+    stroke: white;
+    stroke-width: 1px;
+    fill: none;
+}
+h2{
+    margin-top: 20pt;
+    margin-bottom: 25pt;
+}
+.backgroundzz{
+    background-color: #cc4778;
+    width: auto;
+    height: auto;
+    margin: 25pt 10%;
+    padding: 25pt;
+    border-radius: 25pt ;
+}
+svg{
+    margin: 20pt auto;
+    display: block;
+}
+.h2class {
+    font-size: 30pt;
+    margin: 15;
+    color: #f0f921;
+    text-align: center;
+    filter: drop-shadow(2px -1px #0d0887) sepia(30%);
+    font-family: 'Abril Fatface', cursive;
+}
+.link {
+    text-decoration: underline;
+    margin-left: auto;
+    margin-right: auto;
+}
+h3{
+    font-size: 15pt;
+    margin: 15;
+    color: #f0f921;
+    text-align: center;
+    filter: drop-shadow(2px -1px #0d0887) sepia(30%);
+    font-family: 'Abril Fatface', cursive;
+}
+p{
+    margin: 15;
+    color: #f0f921;
+    text-align: center;
+    filter: sepia(30%);
+    font-family: 'Oswald', sans-serif;
+}
+.colorbar_axis{
+    color: white;
+}
+.aclass{
+    color: #f0f921;
+    font-family: 'Oswald', sans-serif;
+}
+header {
+    color: #FFFFFF;
+    background-size: cover;
+    text-align: center;
+    font-family: "Courier New", Courier, monospace;
+}
+a .image1{
+    width: 50%;
+    height: auto;
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 75%;
+    top: 50pt;
+}
+header img{
+    height: 50pt;
+    pointer-events: none
+}
+.nottitle{
+    color: black;
+    font-size: 15pt;
+    font-family: 'Oswald', sans-serif;
+}
+.footer{
+    margin: 25pt;
+}
+.current_page{
+    text-decoration: underline;
+}
+.title1{
+    font-size: 60pt;
+    color: black;
+    text-decoration: underline;
+    font-family: 'Oswald', sans-serif;
+    vertical-align: middle;
+}
+nav{
+    list-style-type: none;
+}
+nav a{
+    text-decoration: none;
+    color: black;
+    margin-left: 15pt;
+    margin-right: 15pt;
+    vertical-align: middle;
+}
+nav img{
+    margin: -10pt 15pt;
+    top: 10px;
+}
