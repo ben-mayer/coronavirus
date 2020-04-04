@@ -1,0 +1,616 @@
+<html>
+  <head>
+    <title>CORONAVIRUS CASES</title>
+      <script src="https://d3js.org/d3.v5.min.js"></script>
+      <script src="https://d3js.org/topojson.v2.min.js"></script>
+      <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Oswald&display=swap" rel="stylesheet">
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=1024">
+      <link rel="stylesheet" type="text/css" href="styles/all.css" media="all">
+  </head>
+
+  <nav>
+    <ul>
+      <li><a class='nottitle' href='../../index.htm'>Home</a></li>
+      <li><a class='nottitle' href='../../visuals.htm'>Visuals</a></li>
+      <li><a class = 'title1'>Ben Mayer</a></li>
+      <li><a class='nottitle' href='../../about.htm'>About</a></li>
+      <li><a class='nottitle' href='../../contact.htm'>Contact</a></li>
+    </ul>
+  </nav>
+
+  <body>
+
+  <div class = 'backgroundzz'>
+    <a class = "center aclass" href = "../../visuals.htm">GO BACK</a>
+    <h2 class = "h2class">CORONAVIRUS CASES BY STATE OVER TIME</h2>
+    <div class = "block">
+      <hr class = "hrclass">
+      <h2 class= "center nottitle1">Feb 16 - Mar 8</h2>
+      <svg id="colorLegend1" height="60" width="600" ></svg>
+    </div>
+    <svg id="usmap" height="250" width="400" ></svg>
+    <svg id="usmap2" height="250" width="400" ></svg>
+    <svg id="usmap3" height="250" width="400" ></svg>
+    <svg id="usmap4" height="250" width="400" ></svg>
+    <div class = "block">
+      <hr class = "hrclass">
+      <h2 class= "center nottitle1">Mar 15 - Apr 3</h2>
+      <svg id="colorLegend2" height="60" width="600" ></svg>
+    </div>
+    <svg id="usmap5" height="250" width="400" ></svg>
+    <svg id="usmap6" height="250" width="400" ></svg>
+    <svg id="usmap7" height="250" width="400" ></svg>
+    <svg id="usmap8" height="250" width="400" ></svg>
+    <!-- <svg id="usmap9" height="380" width="600" ></svg>
+    <svg id="colorLegend" height="60" width="600" ></svg> -->
+    <p id = "date"></p>
+  </div>
+
+  <script>
+
+    const svg = d3.select("#usmap");
+    const width = svg.attr("width");
+    const height = svg.attr("height");
+    const margin = { top: 0, right: 20, bottom: 40, left:20};
+    const mapWidth = width - margin.left - margin.right;
+    const mapHeight = height - margin.top - margin.bottom;
+    const map = svg.append("g").attr("transform","translate("+margin.left+","+margin.top+")");
+
+    const svg2 = d3.select("#usmap2");
+    const width2 = svg2.attr("width");
+    const height2 = svg2.attr("height");
+    const margin2 = { top: 0, right: 20, bottom: 40, left:20};
+    const mapWidth2 = width2 - margin2.left - margin2.right;
+    const mapHeight2 = height2 - margin2.top - margin2.bottom;
+    const map2 = svg2.append("g").attr("transform","translate("+margin2.left+","+margin2.top+")");
+
+    const svg3 = d3.select("#usmap3");
+    const width3 = svg3.attr("width");
+    const height3 = svg3.attr("height");
+    const margin3 = { top: 0, right: 20, bottom: 40, left:20};
+    const mapWidth3 = width3 - margin3.left - margin3.right;
+    const mapHeight3 = height3 - margin3.top - margin3.bottom;
+    const map3 = svg3.append("g").attr("transform","translate("+margin3.left+","+margin3.top+")");
+
+    const svg4 = d3.select("#usmap4");
+    const width4 = svg4.attr("width");
+    const height4 = svg4.attr("height");
+    const margin4 = { top: 0, right: 20, bottom: 40, left:20};
+    const mapWidth4 = width4 - margin4.left - margin4.right;
+    const mapHeight4 = height4 - margin4.top - margin4.bottom;
+    const map4 = svg4.append("g").attr("transform","translate("+margin4.left+","+margin4.top+")");
+
+    const svg5 = d3.select("#usmap5");
+    const width5 = svg5.attr("width");
+    const height5 = svg5.attr("height");
+    const margin5 = { top: 0, right: 20, bottom: 40, left:20};
+    const mapWidth5 = width5 - margin5.left - margin5.right;
+    const mapHeight5 = height5 - margin5.top - margin5.bottom;
+    const map5 = svg5.append("g").attr("transform","translate("+margin5.left+","+margin5.top+")");
+
+    const svg6 = d3.select("#usmap6");
+    const width6 = svg6.attr("width");
+    const height6 = svg6.attr("height");
+    const margin6 = { top: 0, right: 20, bottom: 40, left:20};
+    const mapWidth6 = width6 - margin6.left - margin6.right;
+    const mapHeight6 = height6 - margin6.top - margin6.bottom;
+    const map6 = svg6.append("g").attr("transform","translate("+margin6.left+","+margin6.top+")");
+
+    const svg7 = d3.select("#usmap7");
+    const width7 = svg7.attr("width");
+    const height7 = svg7.attr("height");
+    const margin7 = { top: 0, right: 20, bottom: 40, left:20};
+    const mapWidth7 = width7 - margin7.left - margin7.right;
+    const mapHeight7 = height7 - margin7.top - margin7.bottom;
+    const map7 = svg7.append("g").attr("transform","translate("+margin7.left+","+margin7.top+")");
+
+    const svg8 = d3.select("#usmap8");
+    const width8 = svg8.attr("width");
+    const height8 = svg8.attr("height");
+    const margin8 = { top: 0, right: 20, bottom: 40, left:20};
+    const mapWidth8 = width8 - margin8.left - margin8.right;
+    const mapHeight8 = height8 - margin8.top - margin8.bottom;
+    const map8 = svg8.append("g").attr("transform","translate("+margin8.left+","+margin8.top+")");
+
+    // const svg9 = d3.select("#usmap9");
+    // const width9 = svg9.attr("width");
+    // const height9 = svg9.attr("height");
+    // const margin9 = { top: 0, right: 20, bottom: 20, left:20};
+    // const mapWidth9 = width9 - margin9.left - margin9.right;
+    // const mapHeight9 = height9 - margin9.top - margin9.bottom;
+    // const map9 = svg9.append("g").attr("transform","translate("+margin9.left+","+margin9.top+")");
+
+    const requestData = async function() {
+      const us = await d3.json("./datasets/us.json");
+      var states = topojson.feature(us, us.objects.states);
+      var statesMesh = topojson.mesh(us, us.objects.states);
+      var projection = d3.geoAlbersUsa().fitSize([mapWidth, mapHeight], states);
+      var path = d3.geoPath().projection(projection);
+
+      const us2 = us;
+      var states2 = topojson.feature(us2, us2.objects.states);
+      var statesMesh2 = topojson.mesh(us2, us2.objects.states);
+      var projection2 = d3.geoAlbersUsa().fitSize([mapWidth2, mapHeight2], states2);
+      var path2 = d3.geoPath().projection(projection2);
+      
+      const us3 = us;
+      var states3 = topojson.feature(us3, us3.objects.states);
+      var statesMesh3 = topojson.mesh(us3, us3.objects.states);
+      var projection3 = d3.geoAlbersUsa().fitSize([mapWidth3, mapHeight3], states3);
+      var path3 = d3.geoPath().projection(projection3);
+
+      const us4 = us;
+      var states4 = topojson.feature(us4, us4.objects.states);
+      var statesMesh4 = topojson.mesh(us4, us4.objects.states);
+      var projection4 = d3.geoAlbersUsa().fitSize([mapWidth4, mapHeight4], states4);
+      var path4 = d3.geoPath().projection(projection4);
+
+      const us5 = us;
+      var states5 = topojson.feature(us5, us5.objects.states);
+      var statesMesh5 = topojson.mesh(us5, us5.objects.states);
+      var projection5 = d3.geoAlbersUsa().fitSize([mapWidth5, mapHeight5], states5);
+      var path5 = d3.geoPath().projection(projection5);
+
+      const us6 = us;
+      var states6 = topojson.feature(us6, us6.objects.states);
+      var statesMesh6 = topojson.mesh(us6, us6.objects.states);
+      var projection6 = d3.geoAlbersUsa().fitSize([mapWidth6, mapHeight6], states6);
+      var path6 = d3.geoPath().projection(projection6);
+
+      const us7 = us;
+      var states7 = topojson.feature(us7, us7.objects.states);
+      var statesMesh7 = topojson.mesh(us7, us7.objects.states);
+      var projection7 = d3.geoAlbersUsa().fitSize([mapWidth7, mapHeight7], states7);
+      var path7 = d3.geoPath().projection(projection7);
+
+      const us8 = us;
+      var states8 = topojson.feature(us8, us8.objects.states);
+      var statesMesh8 = topojson.mesh(us8, us8.objects.states);
+      var projection8 = d3.geoAlbersUsa().fitSize([mapWidth8, mapHeight8], states8);
+      var path8 = d3.geoPath().projection(projection8);
+
+      // const us9 = us;
+      // var states9 = topojson.feature(us9, us9.objects.states);
+      // var statesMesh9 = topojson.mesh(us9, us9.objects.states);
+      // var projection9 = d3.geoAlbersUsa().fitSize([mapWidth9, mapHeight9], states9);
+      // var path9 = d3.geoPath().projection(projection9);
+
+
+      map.selectAll("path.state").data(states.features)
+        .join("path")
+        .attr("class", "state")
+        .attr("note", d => d.id)
+        .attr("d", path);
+      map.append("path").datum(statesMesh)
+        .attr("class","outline")
+        .attr("d", path);
+
+      map2.selectAll("path.state").data(states2.features)
+        .join("path")
+        .attr("class", "state")
+        .attr("note", d => d.id)
+        .attr("d", path2);
+      map2.append("path").datum(statesMesh2)
+        .attr("class","outline")
+        .attr("d", path2);
+
+      map3.selectAll("path.state").data(states3.features)
+        .join("path")
+        .attr("class", "state")
+        .attr("note", d => d.id)
+        .attr("d", path3);
+      map3.append("path").datum(statesMesh3)
+        .attr("class","outline")
+        .attr("d", path3);
+
+      map4.selectAll("path.state").data(states4.features)
+        .join("path")
+        .attr("class", "state")
+        .attr("note", d => d.id)
+        .attr("d", path4);
+      map4.append("path").datum(statesMesh4)
+        .attr("class","outline")
+        .attr("d", path4);
+
+      map5.selectAll("path.state").data(states5.features)
+        .join("path")
+        .attr("class", "state")
+        .attr("note", d => d.id)
+        .attr("d", path5);
+      map5.append("path").datum(statesMesh5)
+        .attr("class","outline")
+        .attr("d", path5);
+
+      map6.selectAll("path.state").data(states6.features)
+        .join("path")
+        .attr("class", "state")
+        .attr("note", d => d.id)
+        .attr("d", path6);
+      map6.append("path").datum(statesMesh6)
+        .attr("class","outline")
+        .attr("d", path6);
+
+      map7.selectAll("path.state").data(states7.features)
+        .join("path")
+        .attr("class", "state")
+        .attr("note", d => d.id)
+        .attr("d", path7);
+      map7.append("path").datum(statesMesh7)
+        .attr("class","outline")
+        .attr("d", path7);
+
+      map8.selectAll("path.state").data(states8.features)
+        .join("path")
+        .attr("class", "state")
+        .attr("note", d => d.id)
+        .attr("d", path8);
+      map8.append("path").datum(statesMesh8)
+        .attr("class","outline")
+        .attr("d", path8);
+
+      // map9.selectAll("path.state").data(states9.features)
+      //   .join("path")
+      //   .attr("class", "state")
+      //   .attr("note", d => d.id)
+      //   .attr("d", path9);
+      // map9.append("path").datum(statesMesh9)
+      //   .attr("class","outline")
+      //   .attr("d", path9);
+
+      const stateData = await d3.csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv");
+      const countyData = await d3.csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv");
+      var stateIDs = await d3.tsv("./datasets/us-state-names.tsv");
+
+      var states = [];
+      for(x = 0; x<stateData.length; x++){
+        z = 0;
+        for(y = 0; y<states.length; y++){
+          if (stateData[x]['state'] != states[y]) {
+            z = z + 1;
+          }
+        }
+        if (z == states.length) {
+            states.push(stateData[x]['state']);
+        }
+      }
+      states.sort();
+      let stateCounts = {};
+      let idToState = {};
+      states.forEach( row => {
+        stateCounts[row] = 0;
+        idToState[row.id] = row.name;
+      });
+      stateIDs.forEach( row => {
+        stateCounts[row.name] = 0;
+        idToState[row.id] = row.name;
+      });
+      coronaCounts = [];
+      for(k = 0; k < states.length; k++){
+        coronaCounts.push({"state":states[k],"count":0});
+      }
+
+      all_months = [null,"January","February","March","April","May","June","July","August","September","October","November","December"];
+
+      //Feb 16
+      data_full_date = [16, 2];
+      map.append("text")
+        .attr("y", height - 10)
+        .attr("fill","white")
+        .attr("text-align", 'center')
+        .attr("x",(width-margin.left-margin.right)/2)
+        .attr('text-anchor', 'middle')
+        .attr('class','nottitle2')
+        .text(String(all_months[data_full_date[1]]) + " " + String(data_full_date[0]) );
+      //Feb 23
+      data_full_date2 = [23, 2];
+      map2.append("text")
+        .attr("y", height2 - 10)
+        .attr("fill","white")
+        .attr("text-align", 'center')
+        .attr("x",(width2-margin2.left-margin2.right)/2)
+        .attr('text-anchor', 'middle')
+        .attr('class','nottitle2')
+        .text(String(all_months[data_full_date2[1]]) + " " + String(data_full_date2[0]) );
+      //Mar 01
+      data_full_date3 = [1, 3];
+      map3.append("text")
+        .attr("y", height3 - 10)
+        .attr("fill","white")
+        .attr("text-align", 'center')
+        .attr("x",(width3-margin3.left-margin3.right)/2)
+        .attr('text-anchor', 'middle')
+        .attr('class','nottitle2')
+        .text(String(all_months[data_full_date3[1]]) + " " + String(data_full_date3[0]) );
+      //Mar 08
+      data_full_date4 = [8, 3];
+      map4.append("text")
+        .attr("y", height4 - 10)
+        .attr("fill","white")
+        .attr("text-align", 'center')
+        .attr("x",(width4-margin4.left-margin4.right)/2)
+        .attr('text-anchor', 'middle')
+        .attr('class','nottitle2')
+        .text(String(all_months[data_full_date4[1]]) + " " + String(data_full_date4[0]) );
+      //Mar 15
+      data_full_date5 = [15, 3];
+      map5.append("text")
+        .attr("y", height5 - 10)
+        .attr("fill","white")
+        .attr("text-align", 'center')
+        .attr("x",(width5-margin5.left-margin5.right)/2)
+        .attr('text-anchor', 'middle')
+        .attr('class','nottitle2')
+        .text(String(all_months[data_full_date5[1]]) + " " + String(data_full_date5[0]) );
+      // //Mar 01
+      data_full_date6 = [22, 3];
+      map6.append("text")
+        .attr("y", height6 - 10)
+        .attr("fill","white")
+        .attr("text-align", 'center')
+        .attr("x",(width6-margin6.left-margin6.right)/2)
+        .attr('text-anchor', 'middle')
+        .attr('class','nottitle2')
+        .text(String(all_months[data_full_date6[1]]) + " " + String(data_full_date6[0]) );
+      // //Mar 08
+      data_full_date7 = [29, 3];
+      map7.append("text")
+        .attr("y", height7 - 10)
+        .attr("fill","white")
+        .attr("text-align", 'center')
+        .attr("x",(width7-margin7.left-margin7.right)/2)
+        .attr('text-anchor', 'middle')
+        .attr('class','nottitle2')
+        .text(String(all_months[data_full_date7[1]]) + " " + String(data_full_date7[0]) );
+      // //Mar 15
+      data_full_date8 = [3, 4];
+      map8.append("text")
+        .attr("y", height8 - 10)
+        .attr("fill","white")
+        .attr("text-align", 'center')
+        .attr("x",(width8-margin8.left-margin8.right)/2)
+        .attr('text-anchor', 'middle')
+        .attr('class','nottitle2')
+        .text(String(all_months[data_full_date8[1]]) + " " + String(data_full_date8[0]) );
+      // //Mar 22
+      // data_full_date9 = [22, 2];
+
+      let countyData2 = countyData;
+      let countyData3 = countyData;
+      let countyData4 = countyData;
+      let countyData5 = countyData;
+      let countyData6 = countyData;
+      let countyData7 = countyData;
+      let countyData8 = countyData;
+      let countyData9 = countyData;
+
+      let coronaCounts2 = coronaCounts;
+      let coronaCounts3 = coronaCounts;
+      let coronaCounts4 = coronaCounts;
+      let coronaCounts5 = coronaCounts;
+      let coronaCounts6 = coronaCounts;
+      let coronaCounts7 = coronaCounts;
+      let coronaCounts8 = coronaCounts;
+      let coronaCounts9 = coronaCounts;
+
+      let stateCounts2 = stateCounts;
+      let stateCounts3 = stateCounts;
+      let stateCounts4 = stateCounts;
+      let stateCounts5 = stateCounts;
+      let stateCounts6 = stateCounts;
+      let stateCounts7 = stateCounts;
+      let stateCounts8 = stateCounts;
+      let stateCounts9 = stateCounts;
+
+      //1
+      for(j = 0; j < countyData.length; j++){
+        for(i = 0; i < coronaCounts.length; i++){
+          if (countyData[j]['state'] == coronaCounts[i]['state']){
+            countyData_date = countyData[j]['date'];
+            countyData_date_day = Number(countyData_date.substring(8,10));
+            countyData_date_month = Number(countyData_date.substring(5,7));
+            countyData_full_date = [countyData_date_day, countyData_date_month];
+            if (countyData_full_date[0] == data_full_date[0] && countyData_full_date[1] == data_full_date[1]) {
+              coronaCounts[i]['count'] = coronaCounts[i]['count'] + Number(countyData[j]['cases']);
+            }
+          }
+        }
+      }
+      for(m = 0; m < coronaCounts.length; m++){
+        stateCounts[coronaCounts[m]['state']] = coronaCounts[m]['count'];
+      }
+      const colorScale = d3.scaleSequential(d3.interpolateGnBu).domain([0,200]);
+      map.selectAll(".state")
+        .style("fill", d => colorScale( stateCounts[ idToState[d.id] ]) );
+      //2
+      for(j = 0; j < countyData2.length; j++){
+        for(i = 0; i < coronaCounts2.length; i++){
+          if (countyData2[j]['state'] == coronaCounts2[i]['state']){
+            countyData_date = countyData2[j]['date'];
+            countyData_date_day = Number(countyData_date.substring(8,10));
+            countyData_date_month = Number(countyData_date.substring(5,7));
+            countyData_full_date = [countyData_date_day, countyData_date_month];
+            if (countyData_full_date[0] == data_full_date2[0] && countyData_full_date[1] == data_full_date2[1]) {
+              coronaCounts2[i]['count'] = coronaCounts2[i]['count'] + Number(countyData2[j]['cases']);
+            }
+          }
+        }
+      }
+      for(m = 0; m < coronaCounts2.length; m++){
+        stateCounts2[coronaCounts2[m]['state']] = coronaCounts2[m]['count'];
+      }
+      map2.selectAll(".state")
+        .style("fill", d => colorScale( stateCounts2[ idToState[d.id] ]) );
+      //3
+      for(j = 0; j < countyData3.length; j++){
+        for(i = 0; i < coronaCounts3.length; i++){
+          if (countyData3[j]['state'] == coronaCounts3[i]['state']){
+            countyData_date = countyData3[j]['date'];
+            countyData_date_day = Number(countyData_date.substring(8,10));
+            countyData_date_month = Number(countyData_date.substring(5,7));
+            countyData_full_date = [countyData_date_day, countyData_date_month];
+            if (countyData_full_date[0] == data_full_date3[0] && countyData_full_date[1] == data_full_date3[1]) {
+              coronaCounts3[i]['count'] = coronaCounts3[i]['count'] + Number(countyData3[j]['cases']);
+            }
+          }
+        }
+      }
+      for(m = 0; m < coronaCounts2.length; m++){
+        stateCounts3[coronaCounts3[m]['state']] = coronaCounts3[m]['count'];
+      }
+      map3.selectAll(".state")
+        .style("fill", d => colorScale( stateCounts3[ idToState[d.id] ]) );
+
+      //4
+      for(j = 0; j < countyData4.length; j++){
+        for(i = 0; i < coronaCounts4.length; i++){
+          if (countyData4[j]['state'] == coronaCounts4[i]['state']){
+            countyData_date = countyData4[j]['date'];
+            countyData_date_day = Number(countyData_date.substring(8,10));
+            countyData_date_month = Number(countyData_date.substring(5,7));
+            countyData_full_date = [countyData_date_day, countyData_date_month];
+            if (countyData_full_date[0] == data_full_date4[0] && countyData_full_date[1] == data_full_date4[1]) {
+              coronaCounts4[i]['count'] = coronaCounts4[i]['count'] + Number(countyData4[j]['cases']);
+            }
+          }
+        }
+      }
+      for(m = 0; m < coronaCounts4.length; m++){
+        stateCounts4[coronaCounts4[m]['state']] = coronaCounts4[m]['count'];
+      }
+      map4.selectAll(".state")
+        .style("fill", d => colorScale( stateCounts4[ idToState[d.id] ]) );
+      drawLegend(d3.select("#colorLegend1"), colorScale);
+      //5
+      for(j = 0; j < countyData5.length; j++){
+        for(i = 0; i < coronaCounts5.length; i++){
+          if (countyData5[j]['state'] == coronaCounts5[i]['state']){
+            countyData_date = countyData5[j]['date'];
+            countyData_date_day = Number(countyData_date.substring(8,10));
+            countyData_date_month = Number(countyData_date.substring(5,7));
+            countyData_full_date = [countyData_date_day, countyData_date_month];
+            if (countyData_full_date[0] == data_full_date5[0] && countyData_full_date[1] == data_full_date5[1]) {
+              coronaCounts5[i]['count'] = coronaCounts5[i]['count'] + Number(countyData5[j]['cases']);
+            }
+          }
+        }
+      }
+      for(m = 0; m < coronaCounts5.length; m++){
+        stateCounts5[coronaCounts5[m]['state']] = coronaCounts5[m]['count'];
+      }
+      const colorScale2 = d3.scaleSequential(d3.interpolateOrRd).domain([0,50000]);
+      map5.selectAll(".state")
+        .style("fill", d => colorScale2( stateCounts5[ idToState[d.id] ]) );
+      //6
+      for(j = 0; j < countyData6.length; j++){
+        for(i = 0; i < coronaCounts6.length; i++){
+          if (countyData6[j]['state'] == coronaCounts6[i]['state']){
+            countyData_date = countyData6[j]['date'];
+            countyData_date_day = Number(countyData_date.substring(8,10));
+            countyData_date_month = Number(countyData_date.substring(5,7));
+            countyData_full_date = [countyData_date_day, countyData_date_month];
+            if (countyData_full_date[0] == data_full_date6[0] && countyData_full_date[1] == data_full_date6[1]) {
+              coronaCounts6[i]['count'] = coronaCounts6[i]['count'] + Number(countyData6[j]['cases']);
+            }
+          }
+        }
+      }
+      for(m = 0; m < coronaCounts6.length; m++){
+        stateCounts6[coronaCounts6[m]['state']] = coronaCounts6[m]['count'];
+      }
+      map6.selectAll(".state")
+        .style("fill", d => colorScale2( stateCounts6[ idToState[d.id] ]) );
+      //7
+      for(j = 0; j < countyData7.length; j++){
+        for(i = 0; i < coronaCounts7.length; i++){
+          if (countyData7[j]['state'] == coronaCounts7[i]['state']){
+            countyData_date = countyData7[j]['date'];
+            countyData_date_day = Number(countyData_date.substring(8,10));
+            countyData_date_month = Number(countyData_date.substring(5,7));
+            countyData_full_date = [countyData_date_day, countyData_date_month];
+            if (countyData_full_date[0] == data_full_date7[0] && countyData_full_date[1] == data_full_date7[1]) {
+              coronaCounts7[i]['count'] = coronaCounts7[i]['count'] + Number(countyData7[j]['cases']);
+            }
+          }
+        }
+      }
+      for(m = 0; m < coronaCounts7.length; m++){
+        stateCounts7[coronaCounts7[m]['state']] = coronaCounts7[m]['count'];
+      }
+      map7.selectAll(".state")
+        .style("fill", d => colorScale2( stateCounts7[ idToState[d.id] ]) );
+      //8
+      for(j = 0; j < countyData8.length; j++){
+        for(i = 0; i < coronaCounts8.length; i++){
+          if (countyData8[j]['state'] == coronaCounts8[i]['state']){
+            countyData_date = countyData8[j]['date'];
+            countyData_date_day = Number(countyData_date.substring(8,10));
+            countyData_date_month = Number(countyData_date.substring(5,7));
+            countyData_full_date = [countyData_date_day, countyData_date_month];
+            if (countyData_full_date[0] == data_full_date8[0] && countyData_full_date[1] == data_full_date8[1]) {
+              coronaCounts8[i]['count'] = coronaCounts8[i]['count'] + Number(countyData8[j]['cases']);
+            }
+          }
+        }
+      }
+      for(m = 0; m < coronaCounts8.length; m++){
+        stateCounts8[coronaCounts8[m]['state']] = coronaCounts8[m]['count'];
+      }
+      const minMax8 = d3.extent(stateIDs, d => stateCounts8[d.name] );
+      console.log(minMax8);
+      map8.selectAll(".state")
+        .style("fill", d => colorScale2( stateCounts8[ idToState[d.id] ]) );
+      drawLegend(d3.select("#colorLegend2"), colorScale2);
+
+      // drawLegend(d3.select("#colorLegend"), colorScale);
+      };
+    requestData();
+
+  </script>
+
+  <script>
+    //function modified from INFO3300 at Cornell University
+    function drawLegend(legend, legendColorScale) {
+      const legendWidth = legend.attr("width");
+      const legendHeight = legend.attr("height");
+      const legendMinMax = d3.extent(legendColorScale.domain());
+      const barHeight = 25;
+      const stepSize = 4;
+      const pixelScale = d3.scaleLinear().domain([0,legendWidth-40]).range([legendMinMax[0]-1,legendMinMax[1]+1]);
+      const barScale = d3.scaleLinear().domain([legendMinMax[0],legendMinMax[1]]).range([0,legendWidth-40]);
+      const barAxis = d3.axisBottom(barScale);
+      if (legendColorScale.hasOwnProperty('quantiles')) {
+        barAxis.tickValues(legendColorScale.quantiles().concat( legendMinMax ));
+      }
+      legend.append("rect")
+          .attr("x", 20)
+          .attr("y", 4)
+          .attr("width", legendWidth-40 )
+          .attr("height", 1 )
+          .style("fill", "white" );
+      legend.append("rect")
+          .attr("x", 20)
+          .attr("y", barHeight+5)
+          .attr("width", legendWidth-40 )
+          .attr("height", 1 )
+          .style("fill", "white" );
+      legend.append("g")
+        .attr("class", "colorbar_axis")
+        .attr("transform","translate("+(20)+","+(barHeight+15)+")")
+        .call(barAxis);
+      let bar = legend.append("g").attr("transform","translate("+(20)+","+(0)+")")
+      for (let i=0; i<legendWidth-40; i=i+stepSize) {
+        bar.append("rect")
+          .attr("x", i)
+          .attr("y", 5)
+          .attr("width", stepSize)
+          .attr("height",barHeight)
+          .style("fill", legendColorScale( pixelScale(i) ));
+      }
+    }
+  </script>
+
+  <p class = "nottitle footer"><strong>Last Updated April 2020</strong></p>
+
+  </body>
+</html>
