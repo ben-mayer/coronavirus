@@ -6,7 +6,7 @@
       <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Oswald&display=swap" rel="stylesheet">
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=1024">
-      <link rel="stylesheet" type="text/css" href="../../styles/all.css" media="all">
+      <link rel="stylesheet" type="text/css" href="styles/all.css" media="all">
   </head>
 
   <nav>
@@ -29,19 +29,27 @@
       <h2 class= "center nottitle1">Feb 16 - Mar 8</h2>
       <svg id="colorLegend1" height="60" width="600" ></svg>
     </div>
-    <svg id="usmap" height="250" width="400" ></svg>
-    <svg id="usmap2" height="250" width="400" ></svg>
-    <svg id="usmap3" height="250" width="400" ></svg>
-    <svg id="usmap4" height="250" width="400" ></svg>
+    <div class = "block">
+      <svg id="usmap" height="250" width="400" ></svg>
+      <svg id="usmap2" height="250" width="400" ></svg>
+    </div>
+    <div class = "block">
+      <svg id="usmap3" height="250" width="400" ></svg>
+      <svg id="usmap4" height="250" width="400" ></svg>
+    </div>
     <div class = "block">
       <hr class = "hrclass">
       <h2 class= "center nottitle1">Mar 15 - Apr 3</h2>
       <svg id="colorLegend2" height="60" width="600" ></svg>
     </div>
-    <svg id="usmap5" height="250" width="400" ></svg>
-    <svg id="usmap6" height="250" width="400" ></svg>
-    <svg id="usmap7" height="250" width="400" ></svg>
-    <svg id="usmap8" height="250" width="400" ></svg>
+    <div class = "block">
+      <svg id="usmap5" height="250" width="400" ></svg>
+      <svg id="usmap6" height="250" width="400" ></svg>
+    </div>
+    <div class = "block">
+      <svg id="usmap7" height="250" width="400" ></svg>
+      <svg id="usmap8" height="250" width="400" ></svg>
+    </div>
     <!-- <svg id="usmap9" height="380" width="600" ></svg>
     <svg id="colorLegend" height="60" width="600" ></svg> -->
     <p id = "date"></p>
@@ -183,7 +191,7 @@
         .attr("note", d => d.id)
         .attr("d", path);
       map.append("path").datum(statesMesh)
-        .attr("class","outline")
+        .attr("class","outline1")
         .attr("d", path);
 
       map2.selectAll("path.state").data(states2.features)
@@ -192,7 +200,7 @@
         .attr("note", d => d.id)
         .attr("d", path2);
       map2.append("path").datum(statesMesh2)
-        .attr("class","outline")
+        .attr("class","outline1")
         .attr("d", path2);
 
       map3.selectAll("path.state").data(states3.features)
@@ -201,7 +209,7 @@
         .attr("note", d => d.id)
         .attr("d", path3);
       map3.append("path").datum(statesMesh3)
-        .attr("class","outline")
+        .attr("class","outline1")
         .attr("d", path3);
 
       map4.selectAll("path.state").data(states4.features)
@@ -210,7 +218,7 @@
         .attr("note", d => d.id)
         .attr("d", path4);
       map4.append("path").datum(statesMesh4)
-        .attr("class","outline")
+        .attr("class","outline1")
         .attr("d", path4);
 
       map5.selectAll("path.state").data(states5.features)
@@ -219,7 +227,7 @@
         .attr("note", d => d.id)
         .attr("d", path5);
       map5.append("path").datum(statesMesh5)
-        .attr("class","outline")
+        .attr("class","outline1")
         .attr("d", path5);
 
       map6.selectAll("path.state").data(states6.features)
@@ -228,7 +236,7 @@
         .attr("note", d => d.id)
         .attr("d", path6);
       map6.append("path").datum(statesMesh6)
-        .attr("class","outline")
+        .attr("class","outline1")
         .attr("d", path6);
 
       map7.selectAll("path.state").data(states7.features)
@@ -237,7 +245,7 @@
         .attr("note", d => d.id)
         .attr("d", path7);
       map7.append("path").datum(statesMesh7)
-        .attr("class","outline")
+        .attr("class","outline1")
         .attr("d", path7);
 
       map8.selectAll("path.state").data(states8.features)
@@ -246,7 +254,7 @@
         .attr("note", d => d.id)
         .attr("d", path8);
       map8.append("path").datum(statesMesh8)
-        .attr("class","outline")
+        .attr("class","outline1")
         .attr("d", path8);
 
       // map9.selectAll("path.state").data(states9.features)
@@ -255,7 +263,7 @@
       //   .attr("note", d => d.id)
       //   .attr("d", path9);
       // map9.append("path").datum(statesMesh9)
-      //   .attr("class","outline")
+      //   .attr("class","outline1")
       //   .attr("d", path9);
 
       const stateData = await d3.csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv");
