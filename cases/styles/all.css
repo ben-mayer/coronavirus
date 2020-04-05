@@ -76,7 +76,6 @@ h3{
 p{
     margin: 15;
     color: #fee873 ;
-    filter: sepia(30%);
     font-family: 'Oswald', sans-serif;
 }
 .colorbar_axis{
@@ -90,7 +89,6 @@ header {
     color: white;
     background-size: cover;
     text-align: center;
-    font-family: "Courier New", Courier, monospace;
 }
 a .image1{
     width: 50%;
@@ -111,6 +109,7 @@ header img{
 .nottitle{
     font-size: 15pt;
     font-family: 'Oswald', sans-serif;
+    font-weight: lighter;
     color: #73cffe;
 }
 .nottitle1{
@@ -133,6 +132,7 @@ header img{
 .footer{
     text-align: center;
     margin-bottom: 25pt;
+    color: #73cffe;
 }
 .title1{
     font-size: 60pt;
@@ -166,27 +166,28 @@ nav li{
 hr {
     border: 0;
     height: 5px;
-    background-image: linear-gradient(to right, #fee97300 , #73cffe , #fee97300 );
+    background-image: linear-gradient(to right, #fee87300 , #73cffe , #fee87300 );
 }
 .hrclass{
     border: 0;
     height: 5px;
-    background-image: linear-gradient(to right, #73cffe00 , #fee973 , #73cffe00 );
+    background-image: linear-gradient(to right, #73cffe00 , #fee873 , #73cffe00 );
     margin: 10pt 0 25pt 0;
 }
 .margin25{
     margin-top: 50pt; 
 }
 .form{
-    display: table;
     margin-left: auto;
     margin-right: auto;
     width: fit-content;
+    color: #73cffe ;
+
 }
 .form p{
-    display: table-row;
     text-align: left;
     width: auto;
+    color: #73cffe ;
 }
 .leftlabel{
     display: table-cell;
@@ -195,7 +196,30 @@ hr {
 .rightlabel{
     display: table-cell;
     text-align: left;
-    padding-left: 10pt;
-    padding-bottom: 20pt;
-
+    width: auto;
+}
+.blueclass{
+    background-color: #73cffe;
+    width: 20pt;
+    height: 20pt;
+}
+.redclass{
+    background-color: #fe738a;
+    width: 20pt;
+    height: 20pt;
+}
+.yellowclass{
+    background: #fee873;
+    width: 20pt;
+    height: 20pt;
+}
+.leftlabel1{
+    text-align: right;
+}
+.rightlabel1{
+    text-align: left;
+    width: 10pt;
+}
+td{
+    padding: 0pt 10pt 10pt 10pt;
 }
