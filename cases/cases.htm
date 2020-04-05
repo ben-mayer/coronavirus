@@ -139,7 +139,6 @@
     }
 
     const minMax = d3.extent(stateIDs, d => stateCounts[d.name] );
-    console.log(stateCounts['New York']);
     const colorScale = d3.scaleSequential(d3.interpolatePlasma).domain([0,50000]);
     document.getElementById("note").innerHTML = "NOTE: New York has a count of " + Number(stateCounts['New York']).toLocaleString() + ", but the scale is being maxed at 50,000 to better show differences between other states.";
     map.selectAll(".state")
