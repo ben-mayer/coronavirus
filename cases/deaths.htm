@@ -6,6 +6,8 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=1024">
       <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald&display=swap" rel="stylesheet">
+      <!-- <link rel="stylesheet" type="text/css" href="styles/all.css" media="all"> -->
+
       <link rel="stylesheet" type="text/css" href="../../styles/all.css" media="all">
   <nav>
     <ul>
@@ -153,7 +155,7 @@
       state.attr("stroke","white")
             .attr("stroke-width", 3);
       state_id.text(idToState[ state.datum().id  ]);
-      state_count.text(stateCounts[ idToState[ state.datum().id  ] ]);
+      state_count.text((stateCounts[ idToState[ state.datum().id  ] ]).toLocaleString());
       let bounds = path.bounds( state.datum() );
       let xPos = (bounds[0][0]+bounds[1][0])/2.0 - ttWidth/2.0;
       let yPos = bounds[1][1];

@@ -7,7 +7,7 @@ html{
     user-select: none;
 }
 .outline {
-    stroke: white;
+    stroke: black;
     stroke-width: 1px;
     fill: none;
 }
