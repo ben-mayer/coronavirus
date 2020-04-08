@@ -55,6 +55,7 @@
     </div>
     <!-- <svg id="usmap9" height="380" width="600" ></svg>
     <svg id="colorLegend" height="60" width="600" ></svg> -->
+    <p id = "note"></p>
     <p id = "date"></p>
   </div>
 
@@ -571,6 +572,7 @@
       console.log(minMax8);
       map8.selectAll(".state")
         .style("fill", d => colorScale2( stateCounts8[ idToState[d.id] ]) );
+      document.getElementById("note").innerHTML = "NOTE: New York has a count of " + Number(stateCounts8['New York']).toLocaleString() + ", but the scale is being maxed at 50,000 to better show differences between other states.";
       drawLegend(d3.select("#colorLegend2"), colorScale2);
 
       // drawLegend(d3.select("#colorLegend"), colorScale);
