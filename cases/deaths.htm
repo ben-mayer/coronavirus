@@ -8,9 +8,9 @@
       <link rel="icon" href="../../icon.png" type="image/png" >
       <meta name="viewport" content="width=1024">
       <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald&display=swap" rel="stylesheet">
-      <!-- <link rel="stylesheet" type="text/css" href="styles/all.css" media="all"> -->
+      <link rel="stylesheet" type="text/css" href="styles/all.css" media="all">
 
-      <link rel="stylesheet" type="text/css" href="../../styles/all.css" media="all">
+      <!-- <link rel="stylesheet" type="text/css" href="../../styles/all.css" media="all"> -->
   <nav>
     <ul>
       <li><a class='nottitle' href='../../index.htm'>Home</a></li>
@@ -28,7 +28,8 @@
     <h2 class = "h2class">CORONAVIRUS DEATHS BY STATE</h2>
     <svg id="usmap1" height="380" width="600" ></svg>
     <svg id="colorLegend1" height="60" width="600" ></svg>
-    <p id = "date1"></p>
+    <p id = "note"></p>
+    
   </div>
 
   <script>
@@ -115,8 +116,6 @@
     all_months = [null,"January","February","March","April","May","June","July","August","September","October","November","December"];
 
     print_date_info = [all_months[data_date_month],data_date_day,2020];
-    document.getElementById("date1").innerHTML = "Data is updated to <em><u>" + print_date_info[0] + " " + print_date_info[1] + " " + print_date_info[2] +
-      "</u></em>. Made by Ben Mayer using notes from INFO3300 at Cornell University. Hover over states for specific counts. Data can be found at <a href= https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html>https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html";
 
     for(j = 0; j < countyData.length; j++){
       for(i = 0; i < coronaCounts.length; i++){
@@ -136,7 +135,9 @@
     }
 
     const minMax = d3.extent(stateIDs, d => stateCounts[d.name] );
-    const colorScale = d3.scaleSequential(d3.interpolatePlasma).domain(minMax);
+    const colorScale = d3.scaleSequential(d3.interpolatePlasma).domain([0,2500]);
+    document.getElementById("note").innerHTML = "NOTE: New York has a count of " + Number(stateCounts['New York']).toLocaleString() + ", but the scale is being maxed at 2,500 to better show differences between other states. Data is updated to <em><u>" + print_date_info[0] + " " + print_date_info[1] + " " + print_date_info[2] +
+      "</u></em>. Made by Ben Mayer using notes from INFO3300 at Cornell University. Hover over states for specific counts. Data can be found at <a href= https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html>https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html";
     map1.selectAll(".state")
         .style("fill", d => colorScale( stateCounts[ idToState[d.id] ]) );
     drawLegend(d3.select("#colorLegend1"), colorScale);
