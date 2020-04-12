@@ -1,0 +1,145 @@
+<html>
+  <head>
+      <title>CORONAVIRUS CASES</title>
+      <script src="https://d3js.org/d3.v5.min.js"></script>
+      <script src="https://d3js.org/topojson.v2.min.js"></script>
+      <link rel="shortcut icon" href="favicon.ico" >
+      <link rel="icon" href="../../icon.png" type="image/png" >
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald&display=swap" rel="stylesheet">      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=1024">
+      <meta charset="UTF-8" />
+      <link rel="stylesheet" type="text/css" href="styles/all.css" media="all">
+      <!-- <link rel="stylesheet" type="text/css" href="../../styles/all.css" media="all"> -->
+  </head>
+  <nav>
+    <ul>
+      <li><a class='nottitle' href='../../index.htm'>Home</a></li>
+      <li><a class='nottitle' href='../../visuals.htm'>Visuals</a></li>
+      <li><a class = 'title1'>Ben Mayer</a></li>
+      <li><a class='nottitle' href='../../about.htm'>About</a></li>
+      <li><a class='nottitle' href='../../contact.htm'>Contact</a></li>
+    </ul>
+  </nav>
+  <body>
+  <div class = 'backgroundzz'>
+    <a class = "center aclass" href = "../../visuals.htm">GO BACK</a>
+    <p id = "totalcount" class = "h2class"></p>
+    <p id = "graphs"></p>
+    <p id = "note"></p>
+  </div>
+  <script>
+    const requestData = async function() {
+        const stateData = await d3.csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv");
+        var states = [];
+        for(x = 0; x<stateData.length; x++){
+            z = 0;
+            for(y = 0; y<states.length; y++){
+                if (stateData[x]['state'] != states[y]) {
+                z = z + 1;
+                }
+            }
+            if (z == states.length) {
+                states.push(stateData[x]['state']);
+            }
+        }
+        states.sort();
+        coronaCounts = [];
+        for(k = 0; k < states.length; k++){
+            coronaCounts.push({"state":states[k],"counts":[],"new_counts":[]});
+        }
+        for(u = 0; u < stateData.length; u++) {
+          stateu = stateData[u]['state'];
+          for(v = 0; v < coronaCounts.length; v++){
+            if (stateu == coronaCounts[v]['state']) {
+              coronaCounts[v]["counts"].push({"date":new Date(stateData[u]['date']),"cases":Number(stateData[u]['cases'])});
+            };
+          };
+        };
+
+        coronaCounts.splice(2,1); coronaCounts.splice(8,1); coronaCounts.splice(10,1); coronaCounts.splice(34,1); coronaCounts.splice(38,1); coronaCounts.splice(45,1);
+
+        for (xx = 0; xx < coronaCounts.length; xx++){
+          for( tt = 0; tt < coronaCounts[tt]['counts'].length; tt++){
+            if (coronaCounts[xx]['counts'][tt] != undefined) {
+              coronaCounts[xx]['counts'][tt]['date'] = coronaCounts[xx]['counts'][tt]['date'] + " 12:00 AM"
+              coronaCounts[xx]['counts'][tt]['date'] = new Date(coronaCounts[xx]['counts'][tt]['date']);
+              coronaCounts[xx]['counts'][tt]['date'].setHours( 0,0,0,0);
+              if (coronaCounts[xx]['counts'][tt]['date'].getTimezoneOffset() == 300){
+                currentdate = coronaCounts[xx]['counts'][tt]['date'];
+                currentdate1 = String(currentdate).substring(0,30) + "400 (Eastern Daylight Time)";
+                coronaCounts[xx]['counts'][tt]['date'] = currentdate1;
+              }
+            }
+          }
+        };
+
+
+        htmltext = coronaCounts[2]['state'] + "<svg id = 'aa" + 2 + "' width = '1000' height = '500'></svg>";
+        document.getElementById("graphs").innerHTML = htmltext;
+        var svg = d3.select("#aa" + 2 );
+        var width = 1000;
+        var height = 500;
+        var margin = { top: 20, right: 20, bottom: 20, left:100};
+        var chartWidth = width - margin.left - margin.right;
+        var chartHeight = height - margin.top - margin.bottom;
+
+        var map = svg.append("g").attr("transform","translate("+margin.left+","+margin.top+")");
+          // let xScale = d3.scaleTime().domain([new Date("2020-03-10 00:00:00 GMT-0400 (Eastern Daylight Time)"),new Date("2020-04-11 00:00:00 GMT-0400 (Eastern Daylight Time)")]).range([margin.left,chartWidth+margin.left]);
+          let xScale = d3.scaleTime().domain([new Date("2020-03-10 00:00:00 GMT-0400 (Eastern Daylight Time)"),new Date("2020-04-11 00:00:00 GMT-0400 (Eastern Daylight Time)")]).range([margin.left,chartWidth+margin.left]);
+          let yScale = d3.scaleLinear().domain([0,coronaCounts[2]['counts'][coronaCounts[2]['counts'].length-1]['cases']]).range([chartHeight,margin.top]);
+          let leftAxis = d3.axisLeft(yScale);
+          svg.append("g").attr("transform","translate("+(margin.left)+","+margin.top+")")
+            .call(leftAxis);
+          let bottomAxis = d3.axisBottom(xScale).ticks(d3.timeDay.every(2)).tickFormat(d3.timeFormat("%b %d"));
+          let bottomElement = svg.append("g").attr("transform","translate("+(0)+","+(chartHeight+margin.top)+")");
+          bottomAxis(bottomElement);
+          coronaCounts[2]['counts'].forEach( (d, i) => {
+            svg.append("line")
+              .attr("x1",xScale(d['date']))
+              .attr("x2",xScale(d['date']))
+              .attr("y1",yScale(0)+margin.top)
+              .attr("y2",yScale(d['cases'])+margin.top) 
+              .style("stroke-width",5)
+              .style("stroke","#73cffe");
+          });
+
+
+
+
+        // var map = svg.append("g").attr("transform","translate("+margin.left+","+margin.top+")");
+        // let xScale = d3.scaleTime().domain([new Date("2020-03-01"),new Date(coronaCounts[2]['counts'][coronaCounts[2]['counts'].length-1]['date'])]).range([margin.left,chartWidth+margin.left]);
+        
+        // // d3.scaleLinear().domain([0,coronaCounts[0]['counts'].length-1]).range([margin.left,chartWidth+margin.left]);
+        // let yScale = d3.scaleLinear().domain([0,coronaCounts[2]['counts'][coronaCounts[2]['counts'].length-1]['cases']]).range([chartHeight,margin.top]);
+        // let leftAxis = d3.axisLeft(yScale);
+        // svg.append("g").attr("transform","translate("+(margin.left)+","+margin.top+")")
+        //   .call(leftAxis);
+        // let bottomAxis = d3.axisBottom(xScale).ticks(d3.timeDay.every(5)).tickFormat(d3.timeFormat("%b %d"));
+        // let bottomElement = svg.append("g").attr("transform","translate("+(0)+","+(chartHeight+margin.top)+")");
+        // bottomAxis(bottomElement);
+        // coronaCounts[2]['counts'].forEach( (d, i) => {
+        //   svg.append("line")
+        //     .attr("x1",xScale(d['date']))
+        //     .attr("x2",xScale(d['date']))
+        //     .attr("y1",yScale(0)+margin.top)
+        //     .attr("y2",yScale(d['cases'])+margin.top) 
+        //     .style("stroke-width",5)
+        //     .style("stroke","#73cffe");
+        // });
+
+
+
+
+
+
+
+      //   document.getElementById("addrow").innerHTML = tablehtml;
+      //   document.getElementById("totalcount").innerHTML = "As of " + print_date_info[0] + " " + print_date_info[1] + ", " + print_date_info[2] + ", there are <u>" + totalcases.toLocaleString() + "</u> COVID-19 CASES and " + "<u>" + totaldeaths.toLocaleString() + "</u> COVID-19 DEATHS in the United States";
+      //   document.getElementById("note").innerHTML = "NOTE: Totals refer to data that includes US territories. The table does not reflect data from these territories. Data is updated to <em><u>" + print_date_info[0] + " " + print_date_info[1] + " " + print_date_info[2] +
+      // "</u></em> and can be found at <a href= https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html>https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html";
+    };
+    requestData();
+    </script>
+  <p class = "nottitle footer"><strong>Last Updated April 2020</strong></p>
+  </body>
+</html>
