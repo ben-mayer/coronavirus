@@ -106,8 +106,8 @@
         document.getElementById("totalcount").innerHTML = "As of " + print_date_info[0] + " " + print_date_info[1] + ", " + print_date_info[2] + ", there are <u>" + totalcases.toLocaleString() + "</u> COVID-19 CASES and " + "<u>" + totaldeaths.toLocaleString() + "</u> COVID-19 DEATHS in the United States";
         console.log(tablehtml);
 
-        document.getElementById("note").innerHTML = "Data is updated to <em><u>" + print_date_info[0] + " " + print_date_info[1] + " " + print_date_info[2] +
-      "</u></em>. Data can be found at <a href= https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html>https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html";
+        document.getElementById("note").innerHTML = "NOTE: Totals refer to data that includes US territories. The table does not reflect data from these territories. Data is updated to <em><u>" + print_date_info[0] + " " + print_date_info[1] + " " + print_date_info[2] +
+      "</u></em> and can be found at <a href= https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html>https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html";
     };
     requestData();
 
