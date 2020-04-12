@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <title>CORONAVIRUS CASES</title>
+      <script src="https://d3js.org/d3.v5.min.js"></script>
+      <script src="https://d3js.org/topojson.v2.min.js"></script>
+      <link rel="shortcut icon" href="favicon.ico" >
+      <link rel="icon" href="../../icon.png" type="image/png" >
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald&display=swap" rel="stylesheet">      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=1024">
+      <meta charset="UTF-8" />
+      <!-- <link rel="stylesheet" type="text/css" href="styles/all.css" media="all"> -->
+      <link rel="stylesheet" type="text/css" href="../../styles/all.css" media="all">
+  </head>
+
+  <nav>
+    <ul>
+      <li><a class='nottitle' href='../../index.htm'>Home</a></li>
+      <li><a class='nottitle' href='../../visuals.htm'>Visuals</a></li>
+      <li><a class = 'title1'>Ben Mayer</a></li>
+      <li><a class='nottitle' href='../../about.htm'>About</a></li>
+      <li><a class='nottitle' href='../../contact.htm'>Contact</a></li>
+    </ul>
+  </nav>
+
+  <body>
+
+  <div class = 'backgroundzz'>
+    <a class = "center aclass" href = "../../visuals.htm">GO BACK</a>
+    <p id = "totalcount" class = "h2class"></p>
+    <table class = "table11">
+        <thead>
+            <tr>
+                <td>State</td>
+                <td>Total Cases</td>
+                <td>Total Deaths</td>
+            </tr>
+        </thead>
+        <tbody id = "addrow">
+        </tbody>
+    </table>
+    <p id = "note"></p>
+  </div>
+
+  <script>
+
+    const requestData = async function() {
+        const stateData = await d3.csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv");
+        const countyData = await d3.csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv");
+
+        var states = [];
+        for(x = 0; x<stateData.length; x++){
+            z = 0;
+            for(y = 0; y<states.length; y++){
+                if (stateData[x]['state'] != states[y]) {
+                z = z + 1;
+                }
+            }
+            if (z == states.length) {
+                states.push(stateData[x]['state']);
+            }
+        }
+        states.sort();
+
+        coronaCounts = [];
+        for(k = 0; k < states.length; k++){
+            coronaCounts.push({"state":states[k],"cases":0,"deaths":0});
+        }
+
+        data_date = countyData[countyData.length-1]['date'];
+        data_date_day = Number(data_date.substring(8,10));
+        data_date_month = Number(data_date.substring(5,7));
+        data_full_date = [data_date_day, data_date_month];
+
+        console.log(data_date);
+        all_months = [null,"January","February","March","April","May","June","July","August","September","October","November","December"];
+
+        print_date_info = [all_months[data_date_month],data_date_day,2020];
+
+        for(j = 0; j < countyData.length; j++){
+            for(i = 0; i < coronaCounts.length; i++){
+                if (countyData[j]['state'] == coronaCounts[i]['state']){
+                    countyData_date = countyData[j]['date'];
+                    countyData_date_day = Number(countyData_date.substring(8,10));
+                    countyData_date_month = Number(countyData_date.substring(5,7));
+                    countyData_full_date = [countyData_date_day, countyData_date_month];
+                    if (countyData_full_date[0] == data_full_date[0] && countyData_full_date[1] == data_full_date[1]) {
+                        coronaCounts[i]['cases'] = coronaCounts[i]['cases'] + Number(countyData[j]['cases']);
+                        coronaCounts[i]['deaths'] = coronaCounts[i]['deaths'] + Number(countyData[j]['deaths']);
+                    }
+                }
+            }
+        }
+
+        coronaCounts.splice(2,1); coronaCounts.splice(8,1); coronaCounts.splice(10,1); coronaCounts.splice(34,1); coronaCounts.splice(38,1); coronaCounts.splice(45,1);
+
+        console.log(coronaCounts);
+        totalcases = 0;
+        totaldeaths = 0;
+        tablehtml = "";
+        for(tc = 0; tc < coronaCounts.length; tc ++){
+            totalcases = totalcases + coronaCounts[tc]['cases'];
+            totaldeaths = totaldeaths + coronaCounts[tc]['deaths'];
+            tablehtml = tablehtml + "<tr><td>" + coronaCounts[tc]['state'] + "</td><td>" + coronaCounts[tc]['cases'] + "</td><td>" + coronaCounts[tc]['deaths'] + "</td></tr>";
+        }
+        document.getElementById("addrow").innerHTML = tablehtml;
+        document.getElementById("totalcount").innerHTML = "As of " + print_date_info[0] + " " + print_date_info[1] + ", " + print_date_info[2] + ", there are <u>" + totalcases.toLocaleString() + "</u> COVID-19 CASES and " + "<u>" + totaldeaths.toLocaleString() + "</u> COVID-19 DEATHS in the United States";
+        console.log(tablehtml);
+
+        document.getElementById("note").innerHTML = "Data is updated to <em><u>" + print_date_info[0] + " " + print_date_info[1] + " " + print_date_info[2] +
+      "</u></em>. Data can be found at <a href= https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html>https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html";
+    };
+    requestData();
+
+    </script>
+
+  <p class = "nottitle footer"><strong>Last Updated April 2020</strong></p>
+
+  </body>
+</html>
