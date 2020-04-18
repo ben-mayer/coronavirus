@@ -1,3 +1,4 @@
+
 html{
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -5,26 +6,20 @@ html{
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
-    margin: none;
-    padding: none;
+    margin: 0;
+    padding: 0;
 }
-.outline {
-    stroke: white;
-    stroke-width: 1px;
-    fill: none;
-}
+
 .outline1 {
     stroke: black;
     stroke-width: 1px;
     fill: none;
 }
-h2{
-    margin-top: 20pt;
-    margin-bottom: 25pt;
-}
 body{    
-    margin: none;
-    padding: none;
+    margin: 0pt 0pt 0pt 0pt;
+    padding: 0pt 0pt 0pt 0pt;
+    position: relative;
+    min-height: 100vh;
 }
 .block{
     display: block;
@@ -32,80 +27,17 @@ body{
     margin-right: auto;
     text-align: center;
 }
-.backgroundzz{
-    background-color: #fe738a ;
-    margin: 25pt 10%;
-    padding: 25pt;
-    border-radius: 25pt ;
-    display: flex;
-    flex: block;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.backgroundzz2{
-    background-color: #fe738a ;
-    margin: 25pt 10%;
-    padding: 25pt;
-    border-radius: 25pt ;
-    display: block;
-    flex: block;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
+
 svg{
-    margin: 20pt auto;
-}
-nav{
-    height: 100pt;
-    background-color: white ;
-    margin: none;
-    padding: none;
-    stroke: none;
-}
-.h2class {
-    font-size: 30pt;
-    margin: 25pt;
-    color: #fee873 ;
-    text-align: center;
-    filter: drop-shadow(-2px -2px #73cffe);
-    font-family: 'Oswald', sans-serif;
+    margin: 25pt auto;
 }
 .link {
     text-decoration: underline;
     margin-left: auto;
     margin-right: auto;
 }
-head{
-    margin: none;
-    padding: none;
-}
-h3{
-    font-size: 15pt;
-    margin: 15;
-    color: #fee873 ;
-    text-align: center;
-    filter: drop-shadow(-2px -2px #73cffe );
-    font-family: 'Oswald', sans-serif;
-}
-p{
-    margin: 15;
-    color: #fee873 ;
-    font-family: 'Oswald', sans-serif;
-}
-.colorbar_axis{
-    color: #fee873;
-}
-.aclass{
-    color: #fee873;
-    font-family: 'Oswald', sans-serif;
-}
-header {
-    color: white;
-    background-size: cover;
-    text-align: center;
+header{
+    padding-bottom: 110pt;
 }
 a .image1{
     width: 50%;
@@ -116,59 +48,13 @@ a .image1{
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    width: 75%;
-    top: 50pt;
 }
-header img{
-    height: 50pt;
-    pointer-events: none
+.footerstay{
+    bottom: 0pt;
+    width: 100%;
+    position: absolute;
 }
-.nottitle{
-    font-size: 15pt;
-    font-family: 'Oswald', sans-serif;
-    font-weight: lighter;
-    color: #73cffe;
-}
-.nottitle1{
-    font-size: 30pt;
-    font-family: 'Oswald', sans-serif;
-    margin: 0 auto;
-    color: #fee873 ;
-    filter: drop-shadow(-2px -2px #73cffe);
-}
-.nottitle2{
-    color: white;
-    font-size: 15pt;
-    font-family: 'Oswald', sans-serif;
-}
-.titleclass{
-    color: #73cffe ;
-    font-size: 25pt;
-    font-family: 'Oswald', sans-serif;
-}
-.footer{
-    text-align: center;
-    margin-bottom: 25pt;
-    color: #73cffe;
-}
-.title1{
-    font-size: 60pt;
-    color: 	#73cffe ;
-    /* font-style: italic; */
-    text-decoration: underline;
-    font-family: 'Oswald', sans-serif;
-    vertical-align: middle;
-    filter: drop-shadow(-5px -2px #fee873 );
-}
-.title2{
-    font-size: 60pt;
-    color: 	white ;
-    /* font-style: italic; */
-    text-decoration: underline;
-    font-family: 'Oswald', sans-serif;
-    vertical-align: middle;
-    filter: drop-shadow(-2px -2px #fee873 );
-}
+
 nav a{
     text-decoration: none;
     color: black;
@@ -176,96 +62,31 @@ nav a{
     margin-right: 15pt;
     vertical-align: middle;
 }
-nav img{
-    margin: -10pt 15pt;
-    top: 10px;
-}
 nav ul {
     list-style-type: none;
-    margin: 0;
+    margin-left: 10pt;
+    margin-top: 0;
     padding: 0;
     text-align: center;
 }
 nav li{
     display: inline;
-    margin: none;
-    padding: none;
+    margin: 0;
+    padding: 0;
 }  
-hr {
-    border: 0;
-    height: 5px;
-    background-image: linear-gradient(to right, #fee87300 , #73cffe , #fee87300 );
-}
-.hrclass{
-    border: 0;
-    height: 5px;
-    background-image: linear-gradient(to right, #73cffe00 , #fee873 , #73cffe00 );
-    margin: 10pt 0 25pt 0;
-}
-.margin25{
-    margin-top: 50pt; 
-}
-.form{
-    margin-left: auto;
-    margin-right: auto;
-    width: fit-content;
-    color: #73cffe ;
 
-}
-.table11 thead td{
-    font-weight: bold;
-    text-decoration: underline;
-    font-size: 20pt;
-    font: drop-shadow(-5px -2px #fee873)
-}
-img{
-    width: 200pt;
-    height: auto;
-    border: #fe738a 10pt solid;
-    background-color: #fe738a;
+.borderCenter{
+    width: 245pt;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
-    filter: drop-shadow(-5px -2px #fee873);
 }
-/* .border1{
-    background-color: #73cffe;
-    margin: 0pt;
-    text-align: center;
-    border: 10pt solid #73cffe;
-    width:220pt;
-    height:220pt;
-} */
-.border2{
-    border: #73cffe 15pt solid;
-    background-color: #73cffe;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    vertical-align: center;
-    margin-top: 20pt;
-    width:220pt;
-    height:218pt;
-}
-.table11 td{
-    font-size: 15pt;
-    font-family: 'Oswald', sans-serif;
-    border-radius: 25pt;
-    padding: 15pt;
-    background-color: white;
-    color: #73cffe;;
-}
+
 .table11{
     text-align: center;
     vertical-align: middle;
     border-spacing: 15pt;
     display: table-cell;
     margin: 0 0 12.5pt 0;
-}
-.form p{
-    text-align: left;
-    width: auto;
-    color: #73cffe ;
 }
 .leftlabel{
     display: table-cell;
@@ -276,21 +97,6 @@ img{
     text-align: left;
     width: auto;
 }
-.blueclass{
-    background-color: #73cffe;
-    width: 20pt;
-    height: 20pt;
-}
-.redclass{
-    background-color: #fe738a;
-    width: 20pt;
-    height: 20pt;
-}
-.yellowclass{
-    background: #fee873;
-    width: 20pt;
-    height: 20pt;
-}
 .leftlabel1{
     text-align: right;
 }
@@ -300,4 +106,246 @@ img{
 }
 td{
     padding: 0pt 10pt 10pt 10pt;
+}
+.outerContainer{
+    margin: 20pt 10% 0 10%;
+}
+
+
+
+/* RED */
+
+.container{
+    background: #1B78F2;
+    display: flex;
+    height: auto;
+}
+header nav{
+    margin-bottom: 100pt;
+    position: fixed;
+    border-bottom: 10pt solid #1B78F2;
+    width: 100%;
+}
+.redclass{
+    background-color: #1B78F2;
+    width: 20pt;
+    height: 20pt;
+}
+.backgroundzz{
+    background-color: #1B78F2 ;
+    margin: 25pt 10%;
+    padding: 25pt;
+    border-radius: 25pt ;
+    display: flex;
+    flex: block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.backgroundzz2{
+    background-color: #1B78F2 ;
+    margin: 25pt 10%;
+    padding: 25pt;
+    border-radius: 25pt ;
+    display: block;
+    flex: block;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+img{
+    border: #1B78F2 10pt solid;
+    background-color: #1B78F2;
+    width: 200pt;
+    height: 200pt;
+    margin-top: 4pt;
+    margin-left: 4pt;
+}
+.title1{
+    font-size: 60pt;
+    color: white ;
+    font-family: 'Oswald', sans-serif;
+    vertical-align: middle;
+    filter: drop-shadow(-4px -4px #1B78F2);
+}
+
+/* BLUE 73cffe */
+
+nav{
+    height: 100pt;
+    background-color: #2745F2 ;
+    margin-bottom: 200pt;
+    padding: 0pt;
+    width: 100%;
+    stroke: none;
+    z-index:500;
+    position: fixed;
+    border-bottom: 10pt solid #1B78F2;
+}
+.h2class {
+    font-size: 30pt;
+    color: white ;
+    text-align: center;
+    filter: drop-shadow(-2px -2px #2745F2);
+    font-family: 'Oswald', sans-serif;
+}
+.nottitle{
+    font-size: 15pt;
+    font-family: 'Oswald', sans-serif;
+    font-weight: lighter;
+    color: #2745F2;
+}
+
+.nottitle1{
+    font-size: 30pt;
+    font-family: 'Oswald', sans-serif;
+    margin: 0 auto;
+    color: white;
+    filter: drop-shadow(-2px -2px #2745F2);
+}
+
+.titleclass{
+    color: #2745F2 ;
+    font-size: 25pt;
+    font-family: 'Oswald', sans-serif;
+    margin: 25pt auto;
+}
+.footer{
+    text-align: center;
+    margin: 50pt 0pt 0pt 0pt;
+    background-color: #2745F2;
+    padding: 25pt;
+    color: white;
+    border-top: 10pt solid #1B78F2;
+
+}
+.form p{
+    text-align: left;
+    width: auto;
+    color: #2745F2 ;
+}
+h3{
+    font-size: 15pt;
+    margin: 15;
+    color: white ;
+    text-align: center;
+    filter: drop-shadow(-2px -2px #2745F2 );
+    font-family: 'Oswald', sans-serif;
+}
+.blogClass{
+    font-size: 15pt;
+    font-family: 'Oswald', sans-serif;
+    font-weight: lighter;
+    color: #2745F2;
+    text-align: left;
+    flex: inline;
+    flex-grow: 1;
+}
+.blogClass2{
+    font-size: 15pt;
+    font-family: 'Oswald', sans-serif;
+    font-weight: lighter;
+    color: #2745F2;
+    text-align: right;
+    flex: inline;
+    flex-grow: 1;
+}
+.blueclass{
+    background-color: #2745F2;
+    width: 20pt;
+    height: 20pt;
+}
+.table11 td{
+    font-size: 15pt;
+    font-family: 'Oswald', sans-serif;
+    border-radius: 25pt;
+    padding: 15pt;
+    background-color: white;
+    color: #2745F2;
+}
+hr{
+    margin: 0pt;
+    background-color: #2745F2;
+    border: 0;
+    height: 10pt;
+}
+.form{
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    color: #2745F2 ;
+    margin-top: 25pt;
+}
+.border2{
+    border: #2745F2 10pt solid;
+    background-color: #2745F2;
+    text-align: center;
+    height: 225pt;
+}
+
+/* WHITE */
+
+
+.container p a{
+    color: white;
+}
+
+.yellowclass{
+    background: white;
+    width: 20pt;
+    height: 20pt;
+}
+.outline {
+    stroke: white;
+    stroke-width: 1px;
+    fill: none;
+}
+.table11 thead td{
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 20pt;
+    font: drop-shadow(-5px -2px white)
+}
+
+.border1{
+    background-color: white;
+    height: 220pt;
+    width: 220pt;
+}
+.title2{
+    font-size: 60pt;
+    color: 	white ;
+    /* font-style: italic; */
+    text-decoration: underline;
+    font-family: 'Oswald', sans-serif;
+    vertical-align: middle;
+    filter: drop-shadow(-2px -2px white );
+}
+p{
+    color: white ;
+    font-family: 'Oswald', sans-serif;
+    margin: 10pt;
+}
+.colorbar_axis{
+    color: white;
+}
+.aclass{
+    color: white;
+    font-family: 'Oswald', sans-serif;
+}
+.nottitle2{
+    color: white;
+    font-size: 15pt;
+    font-family: 'Oswald', sans-serif;
+}
+.navtitle{
+    font-size: 25pt;
+    font-family: 'Oswald', sans-serif;
+    font-weight: lighter;
+    color: white;
+}
+.margin25{
+    height: 125pt;
+    display: block;
 }

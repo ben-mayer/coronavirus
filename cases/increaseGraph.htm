@@ -8,8 +8,8 @@
       <link rel="shortcut icon" href="favicon.ico" >
       <link rel="icon" href="../../icon.png" type="image/png" >
       <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald&display=swap" rel="stylesheet">  
-      <link rel="stylesheet" type="text/css" href="styles/all.css" media="all">    
-      <!-- <link rel="stylesheet" type="text/css" href="../../styles/all.css" media="all"> -->
+      <!-- <link rel="stylesheet" type="text/css" href="styles/all.css" media="all">     -->
+      <link rel="stylesheet" type="text/css" href="../../styles/all.css" media="all">
   </head>
   <header style="padding-bottom: 140pt;">
     <nav>
@@ -53,7 +53,7 @@
           stateu = stateData[u]['state'];
           for(v = 0; v < coronaCounts.length; v++){
             if (stateu == coronaCounts[v]['state']) {
-              coronaCounts[v]["counts"].push({"date": stateData[u]['date'],"cases":Number(stateData[u]['cases'])});
+              coronaCounts[v]["counts"].push({"date": stateData[u]['date'],"cases":Number(stateData[u]['cases']),"yesterday":0});
             };
           };
         };
@@ -75,6 +75,17 @@
           };
           thishtmltext = "<div class = 'h2class center'>" + coronaCounts[xx]['state'] + "</div><svg id = 'aa" + xx + "' width = '1000' height = '500' style = 'background-color: black'></svg>";
           htmltext = htmltext + thishtmltext;
+        };
+
+        for (var1 = 0; var1 < coronaCounts.length; var1++){
+          for (var2 = 0; var2 < coronaCounts[var1]['counts'].length; var2++ ){
+            if (var2 != 0) {
+              yesterday = coronaCounts[var1]['counts'][var2-1]['cases'];
+              today = coronaCounts[var1]['counts'][var2]['cases'];
+              change = today - yesterday;
+              coronaCounts[var1]['counts'][var2]['yesterday'] = change;
+            };
+          };
         };
 
         document.getElementById("graphs").innerHTML = htmltext;
@@ -106,9 +117,9 @@
               coronaCounts[ww]['counts'][qq]['date'] = new Date(currentdate1);
             };
           };
-          console.log(coronaCounts);
+          const yExtent = d3.extent(coronaCounts[ww]['counts'], d => d['yesterday']);
           let xScale = d3.scaleTime().domain([ coronaCounts[ww]['counts'][0]['date'] , coronaCounts[ww]['counts'][coronaCounts[ww]['counts'].length-1]['date'] ]).range([margin.left,chartWidth+margin.left]);
-          let yScale = d3.scaleLinear().domain([0,coronaCounts[ww]['counts'][coronaCounts[ww]['counts'].length-1]['cases']]).range([chartHeight,margin.top]);
+          let yScale = d3.scaleLinear().domain(yExtent).range([chartHeight,margin.top]);
           let leftAxis = d3.axisLeft(yScale);
           svg.append("g").attr("transform","translate("+(margin.left)+","+margin.top+")")
             .call(leftAxis);
@@ -121,15 +132,11 @@
               .attr("x1",xScale(d['date']))
               .attr("x2",xScale(d['date']))
               .attr("y1",yScale(0)+margin.top)
-              .attr("y2",yScale(d['cases'])+margin.top) 
+              .attr("y2",yScale(d['yesterday'])+margin.top) 
               .style("stroke-width",5)
               .style("stroke","#73cffe");
           });
         };
-      //   document.getElementById("addrow").innerHTML = tablehtml;
-      //   document.getElementById("totalcount").innerHTML = "As of " + print_date_info[0] + " " + print_date_info[1] + ", " + print_date_info[2] + ", there are <u>" + totalcases.toLocaleString() + "</u> COVID-19 CASES and " + "<u>" + totaldeaths.toLocaleString() + "</u> COVID-19 DEATHS in the United States";
-      //   document.getElementById("note").innerHTML = "NOTE: Totals refer to data that includes US territories. The table does not reflect data from these territories. Data is updated to <em><u>" + print_date_info[0] + " " + print_date_info[1] + " " + print_date_info[2] +
-      // "</u></em> and can be found at <a href= https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html>https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html";
     };
     requestData();
     </script>
