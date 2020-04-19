@@ -8,8 +8,8 @@
       <link rel="shortcut icon" href="favicon.ico" >
       <link rel="icon" href="../../icon.png" type="image/png" >
       <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald&display=swap" rel="stylesheet">  
-      <!-- <link rel="stylesheet" type="text/css" href="styles/all.css" media="all">     -->
-      <link rel="stylesheet" type="text/css" href="../../styles/all.css" media="all">
+      <link rel="stylesheet" type="text/css" href="styles/all.css" media="all">    
+      <!-- <link rel="stylesheet" type="text/css" href="../../styles/all.css" media="all"> -->
   </head>
   <header style="padding-bottom: 140pt;">
     <nav>
@@ -26,8 +26,6 @@
   <div class = 'backgroundzz'>
     <a class = "center aclass" href = "../../visuals.htm">GO BACK</a>
     <p id = "totalcount" class = "h2class">Total New Cases Over Time Overall</p>
-    <svg id = "usgraph" width = 1000 height = 500 style = "background-color: black;"></svg>
-    <p id = "totalcount" class = "h2class">Total New Cases Over Time By State</p>
     <p id = "graphs"></p>
     <p id = "note"></p>
   </div>
@@ -90,7 +88,7 @@
           };
         };
 
-        document.getElementById("graphs").innerHTML = htmltext;
+        document.getElementById("graphs").innerHTML = "<svg id = 'usgraph' width = 1000 height = 500 style = 'background-color: black;'></svg><div style='margin:50pt;'></div><div class = 'h2class center' style='margin-bottom:50pt;'>Total New Cases Over Time By State</div>" + htmltext;
         for (ww = 0; ww < coronaCounts.length; ww++){
           var svg = d3.select("#aa" + ww );
           var width = 1000;
