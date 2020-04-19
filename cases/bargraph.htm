@@ -1,6 +1,6 @@
 <html>
   <head>
-      <title>CORONAVIRUS CASES</title>
+      <title>All Cases Graph</title>
       <script src="https://d3js.org/d3.v5.min.js"></script>
       <script src="https://d3js.org/topojson.v2.min.js"></script>
       <meta name="viewport" content="width=1024">
@@ -26,6 +26,8 @@
   <body>
   <div class = 'backgroundzz'>
     <a class = "center aclass" href = "../../visuals.htm">GO BACK</a>
+    <p id = "totalcount" class = "h2class">Total Cases Over Time Overall</p>
+    <svg id = "usgraph" width = 1000 height = 500 style = "background-color: black;"></svg>
     <p id = "totalcount" class = "h2class">Total Cases Over Time By State</p>
     <p id = "graphs"></p>
     <p id = "note"></p>
@@ -107,7 +109,6 @@
               coronaCounts[ww]['counts'][qq]['date'] = new Date(currentdate1);
             };
           };
-          console.log(coronaCounts);
           let xScale = d3.scaleTime().domain([ coronaCounts[ww]['counts'][0]['date'] , coronaCounts[ww]['counts'][coronaCounts[ww]['counts'].length-1]['date'] ]).range([margin.left,chartWidth+margin.left]);
           let yScale = d3.scaleLinear().domain([0,coronaCounts[ww]['counts'][coronaCounts[ww]['counts'].length-1]['cases']]).range([chartHeight,margin.top]);
           let leftAxis = d3.axisLeft(yScale);
@@ -127,6 +128,77 @@
               .style("stroke","#73cffe");
           });
         };
+
+        dates = [];
+        for(x5 = 0; x5<stateData.length; x5++){
+            z5 = 0;
+            for(y5 = 0; y5<dates.length; y5++){
+                if (stateData[x5]['date'] != dates[y5]['date']) {
+                  z5 = z5 + 1;
+                };
+            };
+            if (z5 == dates.length) {
+                dates.push({"date":stateData[x5]['date'],"count":0});
+            };
+        };
+        for(u9 = 0; u9 < stateData.length; u9++) {
+          dateu = stateData[u9]['date'];
+          for(v9 = 0; v9 < dates.length; v9++){
+            if (dateu == dates[v9]['date']) {
+              dates[v9]["count"] = Number(dates[v9]["count"]) + Number(stateData[u9]['cases']);
+            };
+          };
+        };
+
+        var svgus = d3.select("svg#usgraph");
+        var widthus = 1000;
+        var heightus = 500;
+        var marginus = { top: 20, right: 40, bottom: 40, left:75};
+        var chartWidthus = widthus - marginus.left - marginus.right;
+        var chartHeightus = heightus - marginus.top - marginus.bottom;
+        var mapus = svgus.append("g").attr("transform","translate("+marginus.left+","+marginus.top+")");
+
+
+        for (qq = 0; qq < dates.length; qq++){
+            thisdate = String(dates[qq]['date']);
+            var newdate1;
+            if (thisdate.substring(0,4) == "2020"){
+              newdate1 = new Date(thisdate.substring(0,4),thisdate.substring(5,7)-1,thisdate.substring(8,10),0,0,0);
+            } else {
+              all_months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+              monthdate = thisdate.substring(4,7);
+              daydate = thisdate.substring(8,10);
+              yeardate = thisdate.substring(11,15);
+              monthdateindex = all_months.indexOf(monthdate);
+              newdate1 = new Date(yeardate,monthdateindex,daydate,0,0,0);
+            }
+            dates[qq]['date'] = newdate1;
+            if (dates[qq]['date'].getTimezoneOffset() == 300){
+              currentdate = dates[qq]['date'];
+              currentdate1 = String(currentdate).substring(0,30) + "400 (Eastern Daylight Time)";
+              dates[qq]['date'] = new Date(currentdate1);
+            };
+        };
+
+        const yExtent = d3.extent(dates, d => d['count']);
+        let xScaleus = d3.scaleTime().domain([dates[0]['date'],dates[dates.length-1]['date']]).range([marginus.left,chartWidthus+marginus.left]);
+        let yScaleus = d3.scaleLinear().domain(yExtent).range([chartHeightus,marginus.top]);
+        let leftAxisus = d3.axisLeft(yScaleus);
+        svgus.append("g").attr("transform","translate("+(marginus.left)+","+marginus.top+")").style("color","white")
+          .call(leftAxisus);
+        let bottomAxisus = d3.axisBottom(xScaleus).ticks(10).tickFormat(d3.timeFormat("%b %d"));
+        // .ticks(d3.timeDay.every(5))
+        let bottomElementus = svgus.append("g").attr("transform","translate("+(0)+","+(chartHeightus+marginus.top)+")").style("color","white");
+        bottomAxisus(bottomElementus);
+        dates.forEach( (d, i) => {
+          svgus.append("line")
+            .attr("x1",xScaleus(d['date']))
+            .attr("x2",xScaleus(d['date']))
+            .attr("y1",yScaleus(0)+marginus.top)
+            .attr("y2",yScaleus(d['count'])+marginus.top) 
+            .style("stroke-width",5)
+            .style("stroke","#73cffe");
+        });
       //   document.getElementById("addrow").innerHTML = tablehtml;
       //   document.getElementById("totalcount").innerHTML = "As of " + print_date_info[0] + " " + print_date_info[1] + ", " + print_date_info[2] + ", there are <u>" + totalcases.toLocaleString() + "</u> COVID-19 CASES and " + "<u>" + totaldeaths.toLocaleString() + "</u> COVID-19 DEATHS in the United States";
       //   document.getElementById("note").innerHTML = "NOTE: Totals refer to data that includes US territories. The table does not reflect data from these territories. Data is updated to <em><u>" + print_date_info[0] + " " + print_date_info[1] + " " + print_date_info[2] +
